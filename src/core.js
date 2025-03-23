@@ -4,7 +4,7 @@
  */
 
 export function validateSecretToken(token) {
-    return token.length > 15 && /[A-Z]/.test(token) && /[a-z]/.test(token) && /[0-9]/.test(token);
+    return token.length >= 10 && /[A-Z]/.test(token) && /[a-z]/.test(token) && /[0-9]/.test(token);
 }
 
 export function jsonResponse(data, status = 200) {
@@ -26,7 +26,7 @@ export async function handleInstall(request, ownerUid, botToken, prefix, secretT
     if (!validateSecretToken(secretToken)) {
         return jsonResponse({
             success: false,
-            message: 'Secret token must be at least 16 characters and contain uppercase letters, lowercase letters, and numbers.'
+            message: 'Secret token must be at least 10 characters and contain uppercase letters, lowercase letters, and numbers.'
         }, 400);
     }
 
